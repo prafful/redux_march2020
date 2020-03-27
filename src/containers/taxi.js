@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import taxiNameClickedActionAndDispatched from '../actions/taxiNameClickedAction';
+import taxiNameDoubleClickedActionAndDispatched from '../actions/taxiNameDoubleClickedAction';
 
 class TaxiContainer extends React.Component {
 
@@ -10,8 +11,10 @@ class TaxiContainer extends React.Component {
         return this.props.taxinames.map( taxi => {
             console.log(taxi);
             return(
-                <li key={taxi.id} onClick={()=>this.props.clickTaxi(taxi)}>
-                     {taxi.name}
+                <li key={taxi.id} 
+                    onClick={()=>this.props.clickTaxi(taxi)} 
+                    onDoubleClick={()=>this.props.doubleClickTaxi(taxi)}>
+                     {taxi.name} &nbsp; +{taxi.likes} &nbsp; -{taxi.dislikes}
                 </li>
             )
         })
@@ -32,7 +35,7 @@ class TaxiContainer extends React.Component {
  
 
 function convertTaxiStoreToProps(taxi_store_received){
-    console.log("Taxi Store Received");
+    console.log("Taxi Store Received in taxi container");
     console.log(taxi_store_received);
     return {
         taxinames: taxi_store_received.alltaxinames
@@ -41,7 +44,8 @@ function convertTaxiStoreToProps(taxi_store_received){
 
 function mapPropsFunctionToActionAndDispatch(dispatch){
     return bindActionCreators({
-        clickTaxi: taxiNameClickedActionAndDispatched
+        clickTaxi: taxiNameClickedActionAndDispatched,
+        doubleClickTaxi: taxiNameDoubleClickedActionAndDispatched
     }, dispatch)
 }
 
