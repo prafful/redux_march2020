@@ -1,5 +1,8 @@
 export default function taxiData(){
-    return [
+
+    
+
+    var  alltaxi = [
         {
             id:1,
             name:'OBB',
@@ -41,4 +44,7 @@ export default function taxiData(){
             reviews: 0
         }
     ]
+
+
+    return alltaxi
 }

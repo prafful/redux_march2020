@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import taxiLikeChangeButtonClickedAndDispatched from '../actions/taxiLikeChangeButtonClickedAction';
 
 class TaxiDetailContainer extends React.Component {
     state = {  }
@@ -14,8 +16,14 @@ class TaxiDetailContainer extends React.Component {
                     <h4>Taxi details....</h4>
                     Taxi ID: {this.props.showTaxiDetail.id} <br />
                     Taxi Name: {this.props.showTaxiDetail.name} <br />
-                    Taxi Likes: {this.props.showTaxiDetail.likes} <br />
-                    Taxi Dislikes: {this.props.showTaxiDetail.dislikes} <br />
+                    Taxi Likes: {this.props.showTaxiDetail.likes} 
+                                &nbsp; 
+                                <button 
+                                    onClick={()=>this.props.changeLikes(this.props.showTaxiDetail)}>
+                                    Like
+                                </button><br />
+                    Taxi Dislikes: {this.props.showTaxiDetail.dislikes}  
+                                &nbsp; <button>DisLike</button><br />
                     City Present: {this.props.showTaxiDetail.active_city} <br />
                     City Planning: {this.props.showTaxiDetail.city_planning} <br />
                     Reviews Count: {this.props.showTaxiDetail.reviews} <br />
@@ -33,5 +41,11 @@ function convertTaxiStoreToPropsForDetail(store){
         showTaxiDetail: store.taxiClicked
     }
 }
+
+function mapFunctionPropsToActionAndDispatch(dispatch){
+    return bindActionCreators({
+        changeLikes: taxiLikeChangeButtonClickedAndDispatched
+    }, dispatch)
+}
  
-export default connect(convertTaxiStoreToPropsForDetail)(TaxiDetailContainer);
+export default connect(convertTaxiStoreToPropsForDetail, mapFunctionPropsToActionAndDispatch)(TaxiDetailContainer);
