@@ -2,6 +2,7 @@ import React from 'react';
 import TaxiContainer from './containers/taxi';
 import TaxiDetailContainer from './containers/taxidetail';
 import TaxiReviewContainer from './containers/taxireview';
+import RemoteUsers from './containers/remoteUsers';
 
 class RootComponent extends React.Component {
     
@@ -15,6 +16,8 @@ class RootComponent extends React.Component {
                 <TaxiDetailContainer></TaxiDetailContainer>
                 <hr />
                 <TaxiReviewContainer></TaxiReviewContainer>
+                <hr />
+                <RemoteUsers></RemoteUsers>
             </div>
          );
     }
